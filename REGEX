@@ -1,0 +1,37 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class example1 {
+    public static void main(String[] args) {
+        String regex = "((\\d{1,3})[-.,\\s]?)?((\\d{3})[-.,\\s]?)((\\d{3})[-.,\\s]?)(\\d{4})";
+        String regex1 = "(?:(?< countryside>\\d{1,3})[-.,\\s]?)?((\\d{3})[-.,\\s]?)((\\d{3})[-.,\\s]?)(\\d{4})";
+        // ?: means to ignore the capture group within which ?: is present
+        // named capture group ?<>
+        String phoneNum="1.321.333.7652";
+
+
+        System.out.println("321333.7652".matches(regex));
+
+
+        Pattern pat =Pattern.compile(regex);//Pattern class has private constructor, so we call the func. compile
+        Pattern pat1 =Pattern.compile(regex,Pattern.COMMENTS);//comments ignore spaces
+        Matcher mat = pat.matcher(phoneNum);
+
+        if(mat.matches())
+        {
+            System.out.println(mat.group("countryside"));
+            System.out.println(mat.group(2));
+            System.out.println(mat.group(3));
+            /* outer capture group is one
+The inner capture group is 2
+then it goes to the next capture group
+ */
+            System.out.println(mat.group(4));
+            System.out.println(mat.group(6));
+            System.out.println(mat.group(7));
+           // System.out.println(mat.group(0));//Entire string
+        }
+
+        
+    }
+}
